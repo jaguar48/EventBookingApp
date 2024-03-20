@@ -1,7 +1,10 @@
+using EventBookingApp_Contracts;
+using EventBookingApp_DAL.Context;
 using EventBookingApp_PLL.Extensions;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.ConfigureCors();
@@ -58,10 +61,10 @@ builder.Services.AddSwaggerGen(c =>
                 });
 });
 
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork<AgricHubDbContext>>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork<EventBookingDBContext>>();
 builder.Services.ConfigureServices();
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddAutoMapper(Assembly.Load("AgricHub.BLL"));
+builder.Services.AddAutoMapper(Assembly.Load("EventBookingApp_BLL"));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 

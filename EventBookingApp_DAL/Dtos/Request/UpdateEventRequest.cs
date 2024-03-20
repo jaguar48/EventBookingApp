@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EventBookingApp_DAL.Entities
+namespace EventBookingApp_DAL.Dtos.Request
 {
-    public class Event
+    public class UpdateEventRequest
     {
-        public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime BookingStartDate { get; set; }
@@ -16,7 +15,5 @@ namespace EventBookingApp_DAL.Entities
         public string Location { get; set; }
         public decimal Price { get; set; }
         public DateTime EventDate { get; set; }
-
-        public ICollection<Booking> Bookings { get; set; }
     }
 }

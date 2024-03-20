@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace EventBookingApp_Contracts
 {
-    public interface IRepository
-    {
+   
         public interface IRepository<T> where T : class
         {
             T Add(T obj);
@@ -57,4 +56,4 @@ namespace EventBookingApp_Contracts
             Task UpdateRangeAsync(IEnumerable<T> records);
         }
     }
-}
+

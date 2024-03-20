@@ -1,4 +1,6 @@
-﻿using EventBookingApp_DAL.Context;
+﻿using EventBookingApp_BLL.Implementation;
+using EventBookingApp_BLL.Interface;
+using EventBookingApp_DAL.Context;
 using EventBookingApp_DAL.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http.Features;
@@ -84,13 +86,15 @@ namespace EventBookingApp_PLL.Extensions
                 options.MultipartBodyLengthLimit = int.MaxValue;
                 options.MemoryBufferThreshold = int.MaxValue;
             });
-           /* services.AddScoped<IUserServices, UserService>();*/
+            services.AddScoped<IUserService, UserService>();
 
+            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<IAdminService, AdminService>();
 
-
-           /* services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped<IConsultantService, ConsultantService>();
-            services.AddScoped<IBusiness_ConsultServices, BusinessConsultService>();*/
+            services.AddScoped<IAuthService, AuthService>();
+            
+            services.AddScoped<IEventService , EventService >();
+            services.AddScoped<IBookingService, BookingService>();
         }
 
     }

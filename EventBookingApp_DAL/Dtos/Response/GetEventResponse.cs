@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EventBookingApp_DAL.Entities
+namespace EventBookingApp_DAL.Dtos.Response
 {
-    public class Event
+    public class GetEventResponse
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -16,7 +16,5 @@ namespace EventBookingApp_DAL.Entities
         public string Location { get; set; }
         public decimal Price { get; set; }
         public DateTime EventDate { get; set; }
-
-        public ICollection<Booking> Bookings { get; set; }
     }
 }

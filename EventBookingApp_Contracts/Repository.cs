@@ -7,7 +7,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using static EventBookingApp_Contracts.IRepository;
 
 namespace EventBookingApp_Contracts
 {
