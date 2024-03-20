@@ -17,14 +17,16 @@ namespace EventBookingApp_DAL.Dtos.Response
             public int EventId { get; set; }
             public string EventTitle { get; set; }
             public string EventDescription { get; set; }
-            public DateTime EventStartDate { get; set; }
-            public DateTime EventEndDate { get; set; }
+            public DateTime BookingDate { get; set; }
+           
             public string Location { get; set; }
             public decimal Price { get; set; }
-            public DateTime BookingDate { get; set; }
+        public decimal AmountPaid { get; set; }
+        public int NoOfTicket { get; set; }
+        public DateTime EventDate { get; set; }
             public bool IsPaid { get; set; }
             public bool IsCancelled { get; set; }
-            // Add more properties as needed
+           
         }
 
     

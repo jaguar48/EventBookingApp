@@ -93,7 +93,7 @@ namespace EventBookingApp_BLL.Implementation
 
             var bookings = await _bookingRepo.GetAllAsync(
                 b => b.EventId == eventId,
-                include: b => b.Include(b => b.Customer));
+                include: b => b.Include(b => b.Customer).Include(b => b.Event));
 
             var bookingResponses = _mapper.Map<List<BookingResponse>>(bookings);
 
