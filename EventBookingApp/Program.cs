@@ -18,13 +18,12 @@ builder.Services.Configure<FormOptions>(o =>
 });
 
 builder.Services.ConfigureIdentity();
-/*builder.Services.ConfigureEmail(builder.Configuration);*/
 
 builder.Services.ConfigureJWT(builder.Configuration);
 
 builder.Services.ConfigureSqlContext(builder.Configuration);
 
-/*builder.Services.AddScoped<ValidationFilterAttribute>();*/
+
 
 builder.Services.AddControllers();
 
@@ -97,7 +96,7 @@ app.MapControllers();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "AgricHub v1");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "EventBooking v1");
 });
 
 app.Run();

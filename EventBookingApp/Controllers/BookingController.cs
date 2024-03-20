@@ -26,11 +26,11 @@ namespace EventBookingApp_PLL.Controllers
         [HttpPost("booking")]
         [SwaggerOperation("Booking an event.")]
         [SwaggerResponse(200, "The event has been successfully booked.", typeof(CreateEventRequest))]
-        public async Task<IActionResult> BookEvent(int eventId)
+        public async Task<IActionResult> BookEvent(int eventId, int numberOfTickets)
         {
             try
             {
-                var result = await _bookingService.BookEventAsync(eventId);
+                var result = await _bookingService.BookEventAsync(eventId, numberOfTickets);
                 return Ok(result);
             }
             catch (Exception ex)

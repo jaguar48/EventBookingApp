@@ -1,38 +1,33 @@
 ﻿using EventBookingApp_BLL.Interface;
-using EventBookingApp_Contracts;
 using EventBookingApp_DAL.Dtos.Response;
 using EventBookingApp_DAL.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace EventBookingApp_BLL.Implementation
 {
 
     public sealed class AuthService : IAuthService
     {
-        /*private readonly ILoggerManager _logger;*/
+
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
         private User? _user;
-        private readonly IUnitOfWork _unitOfWork;
-   
 
 
-        public AuthService(UserManager<User> userManager, IUnitOfWork unitOfWork, IConfiguration configuration)
+
+
+        public AuthService(UserManager<User> userManager, IConfiguration configuration)
         {
-            /*_logger = logger;*/
+
             _userManager = userManager;
-            
-            
-         
+
+
+
             _configuration = configuration;
         }
 
@@ -40,14 +35,14 @@ namespace EventBookingApp_BLL.Implementation
 
         public async Task<ServiceResponse<string>> ValidateUser(UserAuthenticationResponse response)
         {
-            
+
 
             _user = await _userManager.FindByNameAsync(response.UserName);
 
             var result = _user != null && await _userManager.CheckPasswordAsync(_user, response.Password);
             if (!result)
             {
-               
+
 
                 return new ServiceResponse<string>
                 {
@@ -71,7 +66,7 @@ namespace EventBookingApp_BLL.Implementation
         public async Task<string> CreateToken()
         {
 
-            /* _logger.LogInfo("Creates the JWT token");*/
+           
 
             var signingCredentials = GetSigningCredentials();
             var claims = await GetClaims();
@@ -126,7 +121,7 @@ namespace EventBookingApp_BLL.Implementation
             return tokenOptions;
         }
 
-       
+
 
         public async Task<JwtToken> GenerateToken()
         {

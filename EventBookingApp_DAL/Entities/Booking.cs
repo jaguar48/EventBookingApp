@@ -18,8 +18,10 @@ namespace EventBookingApp_DAL.Entities
 
         public DateTime BookingDate { get; set; }
         public bool IsPaid { get; set; }
-        public decimal AmountPaid { get; set; } 
+        public decimal AmountPaid { get; set; }
+        public int NoOfTicket { get; set; } 
         public bool IsCancelled { get; set; }
+
     }
 
 }

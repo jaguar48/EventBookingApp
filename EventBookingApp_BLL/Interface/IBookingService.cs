@@ -9,7 +9,8 @@ namespace EventBookingApp_BLL.Interface
     
      public interface IBookingService
     {
-        Task<string> BookEventAsync(int eventId);
+        Task<string> BookEventAsync(int eventId, int numberOfTickets);
+      
         Task<string> CancelBookingAsync(int bookingId);
         /*Task<string> CancelBookingAsync(int bookingId);*/
     }

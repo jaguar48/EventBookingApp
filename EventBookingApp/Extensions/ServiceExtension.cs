@@ -95,6 +95,8 @@ namespace EventBookingApp_PLL.Extensions
             
             services.AddScoped<IEventService , EventService >();
             services.AddScoped<IBookingService, BookingService>();
+
+            services.AddScoped<IPaymentService, PaymentService>();
         }
 
     }

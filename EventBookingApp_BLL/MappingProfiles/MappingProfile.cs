@@ -18,6 +18,7 @@ namespace EventBookingApp_BLL.MappingProfiles
             CreateMap<CreateEventRequest, Event>();
             CreateMap<Event, GetEventResponse >();
             CreateMap<UpdateEventRequest , Event>();
+            CreateMap<Booking, BookingResponse >();
         }
     }
 }

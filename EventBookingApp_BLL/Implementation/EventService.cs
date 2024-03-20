@@ -4,24 +4,31 @@ using EventBookingApp_Contracts;
 using EventBookingApp_DAL.Dtos.Request;
 using EventBookingApp_DAL.Dtos.Response;
 using EventBookingApp_DAL.Entities;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace EventBookingApp_BLL.Implementation
 {
     public class EventService : IEventService
     {
         private readonly IRepository<Event> _eventRepo;
-
+        private readonly IRepository<Admin> _adminRepo;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IUnitOfWork _unitOfWork;
-
+        private readonly IRepository<Booking> _bookingRepo;
         private readonly IRepository<Wallet> _walletRepo;
         private readonly IMapper _mapper;
 
-        public EventService(IMapper mapper, IUnitOfWork unitOfWork)
+        public EventService(IHttpContextAccessor httpContextAccessor, IMapper mapper, IUnitOfWork unitOfWork)
         {
-            /*_logger = logger;*/
+            _httpContextAccessor = httpContextAccessor;
+
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _eventRepo = _unitOfWork.GetRepository<Event>();
+            _adminRepo = _unitOfWork.GetRepository<Admin>();
+            _bookingRepo = _unitOfWork.GetRepository<Booking>();
             _walletRepo = _unitOfWork.GetRepository<Wallet>();
         }
 
@@ -66,6 +73,35 @@ namespace EventBookingApp_BLL.Implementation
             await _unitOfWork.SaveChangesAsync();
             return "Event deleted successfully";
         }
+
+        public async Task<List<BookingResponse>> GetBookingsForEventAsync(int eventId)
+        {
+
+            var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId))
+            {
+                throw new Exception("User not found");
+            }
+
+            Admin admin = await _adminRepo.GetSingleByAsync(x => x.UserId == userId);
+
+            if (admin == null)
+            {
+                throw new Exception("Admin not found");
+            }
+
+
+            var bookings = await _bookingRepo.GetAllAsync(
+                b => b.EventId == eventId,
+                include: b => b.Include(b => b.Customer));
+
+            var bookingResponses = _mapper.Map<List<BookingResponse>>(bookings);
+
+            return bookingResponses;
+        }
+
+
+
     }
 }
 

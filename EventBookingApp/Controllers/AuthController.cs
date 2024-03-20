@@ -9,7 +9,7 @@ using System.Net;
 namespace EventBookingApp_PLL.Controllers
 {
     [ApiController]
-    [Route("/api/agrichub/authentication")]
+    [Route("api/eventbooking")]
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authentication;

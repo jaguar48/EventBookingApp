@@ -15,6 +15,7 @@ namespace EventBookingApp_DAL.Dtos.Request
         public string Location { get; set; }
         public decimal Price { get; set; }
         public DateTime EventDate { get; set; }
+        public int AvailableTickets { get; set; }
     }
 
 }

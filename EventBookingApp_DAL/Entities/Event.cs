@@ -16,7 +16,9 @@ namespace EventBookingApp_DAL.Entities
         public string Location { get; set; }
         public decimal Price { get; set; }
         public DateTime EventDate { get; set; }
+        public int AvailableTickets { get; set; } 
 
         public ICollection<Booking> Bookings { get; set; }
     }
+
 }

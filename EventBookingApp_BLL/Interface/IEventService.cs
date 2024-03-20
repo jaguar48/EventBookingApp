@@ -15,7 +15,7 @@ namespace EventBookingApp_BLL.Interface
        Task<GetEventResponse > GetEventByIdAsync(int eventId);
         Task<string> UpdateEventAsync(int eventId, UpdateEventRequest eventRequest);
 
-        
+        Task<List<BookingResponse>> GetBookingsForEventAsync(int eventId);
        Task<string> DeleteEventAsync(int eventId);
     }
 }

@@ -71,6 +71,23 @@ namespace EventBookingApp_PLL.Controllers
         }
 
         [Authorize(Roles = "Admin")]
+        [HttpGet("{eventId}/events")]
+        [SwaggerOperation("retrieve an event")]
+        [SwaggerResponse(200, "The event has retrieved successfully.", typeof(BookingResponse))]
+        public async Task<IActionResult> GetBookingsForEvent(int eventId)
+        {
+            try
+            {
+                var bookings = await _eventService.GetBookingsForEventAsync(eventId);
+                return Ok(bookings);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error: {ex.Message}");
+            }
+        }
+
+        [Authorize(Roles = "Admin")]
 
         [HttpDelete("{eventId}")]
         [SwaggerOperation("Delete an existing event")]
